@@ -1,5 +1,4 @@
 let map3DElement = null;
-let markers = []; // To keep track of markers on the map
 
 async function init() {
   const { Map3DElement } = await google.maps.importLibrary("maps3d");
@@ -146,13 +145,13 @@ async function addMarker(location, title) {
   });
 
   map3DElement.append(marker);
-  markers.push(marker);
 }
 
 // Function to clear existing markers from the map
 function clearMarkers() {
-  markers.forEach((marker) => marker.setMap(null));
-  markers = [];
+  document.querySelectorAll("gmp-marker-3d").forEach(marker => {
+    marker.remove();
+  })
 }
 
 init();
